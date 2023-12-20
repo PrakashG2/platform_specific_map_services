@@ -229,3 +229,83 @@ class _ChooseMapBottomModelState extends State<ChooseMapBottomModel> {
     );
   }
 }
+
+
+
+class ChooseMapBottomModel extends StatefulWidget {
+  final Function(int) onMapTypeSelected;
+
+  const ChooseMapBottomModel({Key? key, required this.onMapTypeSelected}) : super(key: key);
+
+  @override
+  _ChooseMapBottomModelState createState() => _ChooseMapBottomModelState();
+}
+
+class _ChooseMapBottomModelState extends State<ChooseMapBottomModel> {
+  // ... existing code ...
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      // ... existing code ...
+
+                child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      mapTypeIndex = index;
+                    });
+
+                    // Call the callback function to notify the parent about the selected map type
+                    widget.onMapTypeSelected(index);
+                  },
+                  // ... existing code ...
+                ),
+              );
+            },
+          ),
+        ),
+        // ... existing code ...
+      ],
+    ),
+  ),
+);
+
+
+
+
+
+class _AppleMapWidgetState extends State<AppleMapWidget> {
+  // ... existing code ...
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // ... existing code ...
+
+      floatingActionButton: FloatingActionButton.small(
+        backgroundColor: CupertinoColors.systemGrey5,
+        onPressed: () {
+          showModalBottomSheet(
+            enableDrag: true,
+            context: context,
+            builder: (BuildContext context) => ChooseMapBottomModel(
+              onMapTypeSelected: (selectedMapTypeIndex) {
+                setState(() {
+                  mapTypeIndex = selectedMapTypeIndex;
+                });
+
+                // Update the map type in AppleMapController
+                appleMapController.updateMapType(mapTypesEnum[selectedMapTypeIndex]);
+              },
+            ),
+          );
+        },
+        child: const Icon(
+          CupertinoIcons.map_fill,
+          size: 16,
+        ),
+      ),
+    );
+  }
+}
+
