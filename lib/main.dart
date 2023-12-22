@@ -4,6 +4,7 @@ import 'package:get/get_instance/src/bindings_interface.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/route_manager.dart';
 import 'package:platform_specific_map_services/controller/apple_map_controller.dart';
+import 'package:platform_specific_map_services/controller/google_map_controller.dart';
 import 'package:platform_specific_map_services/screens/home_page.dart';
 
 void main() {
@@ -27,5 +28,6 @@ class RootBindings extends Bindings {
   @override
   void dependencies() {
     Get.put(AppleMapWidgetController());
+    Get.put(GoogleMapGetXController());
   }
 }

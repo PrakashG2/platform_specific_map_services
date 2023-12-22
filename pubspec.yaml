@@ -40,6 +40,8 @@ dependencies:
   permission_handler: ^11.1.0
   apple_maps_flutter: ^1.2.0
   get: ^4.6.6
+  flutter_google_places: ^0.3.0
+  flutter_speed_dial: ^7.0.0
 
 dev_dependencies:
   flutter_test:
